@@ -1,0 +1,15 @@
+{
+  "name": "foger-sm-herbing",
+  "version": "1.0.0",
+  "description": "Project for practicing working with html and css",
+  "main": "script.js",
+  "dependencies": {},
+  "devDependencies": {
+    "parcel": "^1.12.4"
+  },
+  "scripts": {
+    "start": "parcel index.html"
+  },
+  "author": "Tyler Fougere",
+  "license": "ISC"
+}
