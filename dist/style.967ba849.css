@@ -1,0 +1,275 @@
+html {
+}
+
+* {
+  font-family: 'Texturina', sans-serif;
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+}
+
+body {
+  background-image: linear-gradient(to bottom right, darkgrey, darkred);
+}
+
+span {
+  color: white;
+}
+
+h2,
+.purple {
+  color: darkviolet;
+}
+
+h4 {
+  font-size: 2.4rem;
+  font-weight: 500;
+}
+
+ul {
+  list-style-type: none;
+  overflow: hidden;
+}
+
+#logo,
+li {
+  float: left;
+}
+
+/* IDs */
+
+#map,
+#herb-calc,
+#gold-calc,
+#faq {
+  margin: 1rem;
+}
+
+#faq {
+  /* background-color: #878787; */
+}
+#map {
+  /* background-color: #777777; */
+}
+
+#herb-calc {
+  background-color: #888888;
+}
+
+#gold-calc {
+  background-color: #999999;
+}
+
+/* SECTIONS */
+section {
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 1rem;
+}
+
+.section__title {
+  align-self: start;
+}
+
+.section_header {
+  align-items: start;
+}
+
+/* NAV BAR */
+.nav {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  height: 9rem;
+  width: 100%;
+  z-index: 100;
+}
+.sticky {
+  position: fixed;
+  background-color: rgba(128, 128, 128, 0.75);
+}
+
+#logo {
+  margin-left: 1rem;
+}
+
+.nav__links {
+  background-color: #333333;
+}
+
+.nav__item:hover {
+  background-color: #777777;
+}
+
+/* HEADER */
+.header {
+  padding: 0 3rem;
+  height: 100vh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.header__title {
+  margin-top: 15%;
+  margin-left: 3rem;
+  display: grid;
+  grid-gap: 1rem 1rem;
+  max-width: 115rem;
+}
+
+.header__img {
+  width: 75%;
+  transform: translateY(-12rem);
+}
+
+.item-1 {
+  grid-row: 1 / 2;
+}
+
+.item-2 {
+  grid-area: 2 / 1 / 3 / 2;
+}
+
+.item-3 {
+  grid-column: 1 / 2;
+}
+
+.item-4 {
+  grid-area: 3 / 2 / 4 / 3;
+}
+
+.nav__links a,
+.map__selector-buttons a {
+  display: block;
+  color: white;
+  text-align: center;
+  padding: 4px;
+  text-decoration: none;
+  margin-block-start: 1em;
+  margin-block-end: 1em;
+  margin-inline-start: 0px;
+  margin-inline-end: 0px;
+  padding-inline-start: 1rem;
+  padding-inline-end: 1rem;
+}
+
+.highlight {
+  color: white;
+}
+
+.link {
+  text-decoration: none;
+}
+
+/* FAQ */
+.faq--shadow-oil,
+.faq--gspp {
+  margin-top: 2rem;
+  justify-items: center;
+  align-items: center;
+  display: grid;
+  grid-template-columns: 1fr 1fr 1fr;
+}
+
+.faq__text {
+  margin-top: 2rem;
+}
+
+.faq__shadow-oil-recipe,
+.faq__gspp-recipe {
+  align-items: center;
+  display: grid;
+  grid-template-rows: repeat(3, 1fr);
+  grid-template-columns: 1fr 3fr;
+}
+
+.faq__item--1 {
+  justify-items: center;
+  align-items: center;
+  display: grid;
+  grid-template-rows: 1fr 1fr;
+}
+.faq__item--2 {
+  justify-content: end;
+}
+.faq__item--3 {
+}
+
+/* MAP */
+.map-item {
+  display: inline-block;
+  align-items: center;
+}
+
+.map-item.hidden {
+  display: none;
+}
+
+.map__btn {
+  background-color: darkred;
+  width: max-content;
+  color: white;
+  padding: 16px;
+  font-size: 16px;
+  border: none;
+}
+
+.map-btn-left {
+  border-radius: 25px 0px 0px 25px;
+}
+
+.map-btn-right {
+  border-radius: 0px 25px 25px 0px;
+}
+
+.map__selector {
+  margin: 5px;
+  position: relative;
+  display: inline-block;
+}
+
+.map__btn:hover,
+.map__btn-active,
+.map__btn:active {
+  background-color: green;
+}
+
+.map__img,
+.map__video {
+  width: 39vw;
+}
+
+.map__video {
+}
+
+/* HERB */
+
+.herb__content {
+  display: grid;
+  grid-template-columns: 5fr 3fr;
+  grid-gap: 1rem;
+  height: 100%;
+  overflow: hidden;
+}
+
+.herb__content img {
+  height: 100%;
+  width: auto;
+}
+
+.herb__qty {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  max-height: 50%;
+  grid-gap: 1rem;
+}
+
+.herb__totals {
+}
+
+
+/*# sourceMappingURL=/style.967ba849.css.map */
