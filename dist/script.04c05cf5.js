@@ -189,21 +189,203 @@ function addEventListeners() {
     }
   });
 }
+},{}],"src/js/herbScript.js":[function(require,module,exports) {
+'use strict';
+
+Object.defineProperty(exports, "__esModule", {
+  value: true
+});
+exports.addEventListeners = addEventListeners;
+var herbSelect = document.querySelector('.herb__qty');
+var overlay = document.querySelector('.overlay');
+var modal = document.querySelector('.modal');
+var btnCloseModal = document.querySelector('.btn--close-modal');
+var herbTotalHeader = document.querySelector('.herb__total--header');
+var herbResetBtn = document.querySelector('.herbReset');
+var totalGraveMoss = 0;
+var resetCounter = 0;
+var gsppPrice = 14;
+
+var herbResetItemHTML = function herbResetItemHTML(total) {
+  return "<div class=\"gold btn--reset-herb\">".concat(total, "</div>");
+};
+
+var createHerbResetItem = function createHerbResetItem(total) {
+  if (resetCounter === 4) {
+    +total + totalGraveMoss;
+    resetCounter++;
+    var lockoutHTML = "<div class=\"purple\">You got ".concat(totalGraveMoss / 4, " GSPP worth of Grave Moss this lockout, or <span class=\"gold\">").concat(totalGraveMoss / 4 * gsppPrice, "</span>.</div>");
+    herbResetBtn.insertAdjacentHTML('beforebegin', lockoutHTML);
+    resetCounter = 0;
+  }
+
+  var html = herbResetItemHTML(total);
+  totalGraveMoss += +total;
+  resetCounter++;
+  return herbTotalHeader.insertAdjacentHTML('afterend', html);
+};
+
+var createModalHTML = function createModalHTML(arr) {
+  var newHTML = "";
+  var gmIcon = document.querySelector('.gmImg').src;
+  arr.forEach(function (btn) {
+    // Create modal button and filler
+    newHTML += "\n    <button class=\"btn--select-herb\" data-total=\"".concat(btn, "\">\n    <h1 class='gold'>").concat(btn, "</h1>\n    <div class=\"modal__filler\"></div>\n    "); // Add number of gravemoss
+
+    createGraveMossHTML(btn)(function () {
+      return newHTML += "<img src=\"".concat(gmIcon, "\">");
+    }); // end button
+
+    newHTML += "</button>";
+  });
+  return newHTML;
+};
+
+var createGraveMossHTML = function createGraveMossHTML(num) {
+  return function (f) {
+    if (num > 0) {
+      f();
+      createGraveMossHTML(num - 1)(f);
+    }
+  };
+};
+
+var createModalWindow = function createModalWindow(graveMoss) {
+  var gm3 = [3, 4, 5, 6, 7, 8, 9];
+  var gm2 = [2, 3, 4, 5, 6];
+  var gm1 = [1, 2, 3];
+  var gm0 = [];
+  var html = "<div class=\"modal__select-herb-container\">";
+
+  if (graveMoss === '3') {
+    var newHTML = createModalHTML(gm3);
+    html += newHTML;
+  }
+
+  if (graveMoss === '2') {
+    var _newHTML = createModalHTML(gm2);
+
+    html += _newHTML;
+  }
+
+  if (graveMoss === '1') {
+    var _newHTML2 = createModalHTML(gm1);
+
+    html += _newHTML2;
+  }
+
+  if (graveMoss === '0') {
+    var _newHTML3 = createModalHTML(gm0);
+
+    html += _newHTML3;
+  }
+
+  html += "</div>";
+  return btnCloseModal.insertAdjacentHTML('afterend', html);
+};
+
+var clearModal = function clearModal(elements) {
+  return elements.forEach(function (el) {
+    return el.remove();
+  });
+};
+
+var toggleModalOverLay = function toggleModalOverLay() {
+  modal.classList.toggle('hidden');
+  overlay.classList.toggle('hidden');
+};
+
+function addEventListeners() {
+  herbSelect.addEventListener('click', function (e) {
+    e.preventDefault(); // Number of gravemoss picked
+
+    var gm = e.target.classList[0].split('gm')[1]; // What to do when image of gravemoss is pushed
+
+    createModalWindow(gm); // Show Modal and overlay
+
+    toggleModalOverLay();
+    var herbContainer = document.querySelector('.modal__select-herb-container'); // When modal button is pressed
+
+    herbContainer.addEventListener('click', function (e) {
+      e.preventDefault(); // Select number of gravemoss
+
+      var herbAmt = e.target.dataset.total; // Select modal content
+
+      var modalHerbBtns = document.querySelectorAll('.btn--select-herb'); // Hide Modal/Overlay
+
+      toggleModalOverLay();
+      clearModal(modalHerbBtns); // Create new herb per reset html item and display
+
+      createHerbResetItem(herbAmt);
+    });
+  });
+  btnCloseModal.addEventListener('click', function (e) {
+    e.preventDefault(); // Select buttons
+
+    var modalHerbBtns = document.querySelectorAll('.btn--select-herb'); // Toggle modal and overlay and clear the modal buttons
+
+    toggleModalOverLay();
+    clearModal(modalHerbBtns);
+  });
+  herbResetBtn.addEventListener('click', function (e) {
+    e.preventDefault(); // Reset UI
+
+    var allHerbs = document.querySelectorAll('.btn--reset-herb');
+    clearModal(allHerbs); // Reset grave moss total and counter to 0
+
+    totalGraveMoss = 0;
+    resetCounter = 0;
+  });
+}
 },{}],"src/js/script.js":[function(require,module,exports) {
 'use strict';
 
 var mapScript = _interopRequireWildcard(require("./mapScript.js"));
 
+var herb = _interopRequireWildcard(require("./herbScript.js"));
+
 function _getRequireWildcardCache() { if (typeof WeakMap !== "function") return null; var cache = new WeakMap(); _getRequireWildcardCache = function () { return cache; }; return cache; }
 
 function _interopRequireWildcard(obj) { if (obj && obj.__esModule) { return obj; } if (obj === null || typeof obj !== "object" && typeof obj !== "function") { return { default: obj }; } var cache = _getRequireWildcardCache(); if (cache && cache.has(obj)) { return cache.get(obj); } var newObj = {}; var hasPropertyDescriptor = Object.defineProperty && Object.getOwnPropertyDescriptor; for (var key in obj) { if (Object.prototype.hasOwnProperty.call(obj, key)) { var desc = hasPropertyDescriptor ? Object.getOwnPropertyDescriptor(obj, key) : null; if (desc && (desc.get || desc.set)) { Object.defineProperty(newObj, key, desc); } else { newObj[key] = obj[key]; } } } newObj.default = obj; if (cache) { cache.set(obj, newObj); } return newObj; }
 
+function _slicedToArray(arr, i) { return _arrayWithHoles(arr) || _iterableToArrayLimit(arr, i) || _unsupportedIterableToArray(arr, i) || _nonIterableRest(); }
+
+function _nonIterableRest() { throw new TypeError("Invalid attempt to destructure non-iterable instance.\nIn order to be iterable, non-array objects must have a [Symbol.iterator]() method."); }
+
+function _unsupportedIterableToArray(o, minLen) { if (!o) return; if (typeof o === "string") return _arrayLikeToArray(o, minLen); var n = Object.prototype.toString.call(o).slice(8, -1); if (n === "Object" && o.constructor) n = o.constructor.name; if (n === "Map" || n === "Set") return Array.from(o); if (n === "Arguments" || /^(?:Ui|I)nt(?:8|16|32)(?:Clamped)?Array$/.test(n)) return _arrayLikeToArray(o, minLen); }
+
+function _arrayLikeToArray(arr, len) { if (len == null || len > arr.length) len = arr.length; for (var i = 0, arr2 = new Array(len); i < len; i++) { arr2[i] = arr[i]; } return arr2; }
+
+function _iterableToArrayLimit(arr, i) { if (typeof Symbol === "undefined" || !(Symbol.iterator in Object(arr))) return; var _arr = []; var _n = true; var _d = false; var _e = undefined; try { for (var _i = arr[Symbol.iterator](), _s; !(_n = (_s = _i.next()).done); _n = true) { _arr.push(_s.value); if (i && _arr.length === i) break; } } catch (err) { _d = true; _e = err; } finally { try { if (!_n && _i["return"] != null) _i["return"](); } finally { if (_d) throw _e; } } return _arr; }
+
+function _arrayWithHoles(arr) { if (Array.isArray(arr)) return arr; }
+
+// Sticky Nav
+var header = document.querySelector('.header');
+var nav = document.querySelector('.nav');
+var navHeight = nav.getBoundingClientRect().height;
+
+var stickyNav = function stickyNav(entries) {
+  var _entries = _slicedToArray(entries, 1),
+      entry = _entries[0];
+
+  if (!entry.isIntersecting) nav.classList.add('sticky');else nav.classList.remove('sticky');
+};
+
+var headerObserver = new IntersectionObserver(stickyNav, {
+  root: null,
+  threshold: 0,
+  rootMargin: "-".concat(navHeight, "px")
+});
+headerObserver.observe(header);
+
 var init = function init() {
   mapScript.addEventListeners();
+  herb.addEventListeners();
 };
 
 init();
-},{"./mapScript.js":"src/js/mapScript.js"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
+},{"./mapScript.js":"src/js/mapScript.js","./herbScript.js":"src/js/herbScript.js"}],"node_modules/parcel/src/builtins/hmr-runtime.js":[function(require,module,exports) {
 var global = arguments[3];
 var OVERLAY_ID = '__parcel__error__overlay__';
 var OldModule = module.bundle.Module;
@@ -231,7 +413,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "52846" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "50553" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};

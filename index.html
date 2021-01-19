@@ -60,16 +60,16 @@
     </header>
     <section id="faq">
       <div class="section__title">
-        <div class="section__description">but how? and y tho</div>
         <div class="section__header">
           <h4>You'll need to 
-          <span>make</span>
-          <a class="link" href="https://classic.wowhead.com/item=6068/recipe-shadow-oil">
-          <span class="purple">Shadow Oil</span>
-          </a>
-          .
+            <span>make</span>
+            <a class="link" href="https://classic.wowhead.com/item=6068/recipe-shadow-oil">
+              <span class="purple">Shadow Oil</span>
+            </a>
+            .
           </h4>
         </div>
+        <div class="section__description">but how? and y tho</div>
       </div>
       <div class="faq--shadow-oil margin">       
         <div class="faq__item--1">
@@ -176,7 +176,7 @@
 
     <section id="herb-calc" class="section">
       <div class="section__title">
-        <div class="section__header"><h4>Herb Calculator</h4>
+        <div class="section__header"><h4 class="gold">Herb<span>Calc</span></h4>
             </div>
         <div class="section__description">
           <p>
@@ -189,21 +189,28 @@
       </div>
       <div class="herb__content">
         <div class="herb__qty">
-          <img src="/src/img/herb_content1.png">
-          <img src="/src/img/herb_content2.png">
-          <img src="/src/img/herb_content3.png">
-          <img src="/src/img/herb_content4.png">
+          <img class="gm3" src="/src/img/herb_content1.png">
+          <img class="gm2" src="/src/img/herb_content2.png">
+          <img class="gm1" src="/src/img/herb_content3.png">
+          <img class="gm0" src="/src/img/herb_content4.png">
       </div>
     
         <div class="herb__totals">
-          <p>Thing 1</p>
-          <p>Thing 1</p>
-          <p>Thing 1</p>
-          <p>Thing 1</p>
+            <div class="herb__total--header">
+              Herbs per reset
+            </div>
+            <button class="herbReset">Reset</button>
         </div>
         </div>
       
     </section>
+
+    <div class="modal hidden">
+      <button class="btn--close-modal">×</button>
+      <div class="modal__header">How much gravemoss<img class="gmImg" src="src/img/gravemoss_icon.png"> did you get?</div>
+    </div>
+    <div class="overlay hidden">
+    </div>
   </body>
 </html>
 
