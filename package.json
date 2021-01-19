@@ -8,7 +8,8 @@
     "parcel": "^1.12.4"
   },
   "scripts": {
-    "start": "parcel index.html"
+    "start": "parcel index.html",
+    "build": "parcel build index.html --dist-dir ./dist"
   },
   "author": "Tyler Fougere",
   "license": "ISC"
