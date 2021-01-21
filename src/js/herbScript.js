@@ -1,6 +1,6 @@
 'use strict';
 
-const herbSelect = document.querySelector('.herb__qty');
+const herbSelect = document.querySelector('.herb__qty--container');
 const overlay = document.querySelector('.overlay');
 const modal = document.querySelector('.modal');
 const btnCloseModal = document.querySelector('.btn--close-modal');
@@ -20,11 +20,11 @@ const createHerbResetItem = function (total) {
     +total + totalGraveMoss;
     resetCounter++;
 
-    const lockoutHTML = `<div class="purple">You got ${
+    const lockoutHTML = `<div class=>You got <span>${
       totalGraveMoss / 4
-    } GSPP worth of Grave Moss this lockout, or <span class="gold">${
+    }</span> GSPP worth of <span class="purple">Grave Moss</span> this lockout: <span class="gold">${
       (totalGraveMoss / 4) * gsppPrice
-    }</span>.</div>`;
+    }</span> Gold.</div>`;
     herbResetBtn.insertAdjacentHTML('beforebegin', lockoutHTML);
     resetCounter = 0;
   }

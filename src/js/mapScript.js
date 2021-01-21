@@ -48,7 +48,6 @@ export function addEventListeners() {
     const activeBtn = e.target.classList.value.includes('active');
     const activeMap = e.target.dataset.map;
 
-    mapSection.classList.remove('active');
     hideMapItems();
 
     // Make current video pause(if one is playing)
@@ -56,13 +55,14 @@ export function addEventListeners() {
     // Remove/add button classes if the button isnt already active
     // Resize the page to 200vh
     if (!activeBtn) {
-      mapSection.classList.toggle('active');
+      mapSection.classList.add('active');
       toggleMapItem(activeMap);
       removeActive(mapAllBtns);
       e.target.classList.add('map__btn-active');
     }
-    // If the button is already active, remove all active classes and display default map
+    // If the button is already active, remove all active classes and display default map, also remove active class to shrink view size
     if (activeBtn) {
+      mapSection.classList.remove('active');
       toggleMapItem('default');
       removeActive(mapAllBtns);
     }
