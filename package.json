@@ -9,7 +9,7 @@
   },
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html --dist-dir ./dist"
+    "build": "parcel build index.html --dist-dir /dist"
   },
   "author": "Tyler Fougere",
   "license": "ISC"

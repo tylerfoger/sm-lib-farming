@@ -13,7 +13,7 @@
     <link rel="stylesheet" href="/style.967ba849.css">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/4.7.0/css/font-awesome.min.css">
     <title>So you wanna farm GSPP</title>
-    <script defer="" src="/script.04c05cf5.js"></script>
+    <script defer="" src="/controller.e87f5190.js"></script>
   <script src="/style.967ba849.js"></script></head>
   <body>
     <header class="header">
@@ -136,19 +136,11 @@
           <h4>Farming <span class="scarlet">Scarlet</span> <span>Monastery</span></h4>
           </div>
         <div class="section__description">
-        <h3>Run through SM in this order:</h3>
-          <ul class="map__order">
-            <li>
-            Graveyard
-            </li>
-            <li>
-            Armory
-            </li>
-            <li>
-            Library  
-            </li>
-          <ul>      
-        </ul></ul></div>
+        <h3>Run through SM in this order:
+          <br>
+          ->
+        </h3>   
+        </div>
       </div>
       <div class="map__selector">
         <ul class="map__selector-buttons js--map-btns">
@@ -165,7 +157,7 @@
       </div>
       <br>
       <div class="js--map-items">
-        <div class="map-item map-sm-entrance active">
+        <div class="map-item map-sm-entrance">
           <img class="map__img" src="/sm_entrance.1019b40c.png">
         </div>
         <div class="map-item map-sm-gy hidden" data-map="gy">
@@ -190,10 +182,13 @@
           </video>
         </div>
       </div>
-      <p class="video--description">Make sure you reset after doing all three by right clicking your portrait and selecting Reset all instances.</p>
-      <video class="reset__video" controls="">
-        <source src="/reset instances.1ee5be70.webm" type="video/webm">
-      </video>
+      <div class="map__video-reset--container">
+        <h3>Resetting the instance</h3>
+        <video class="reset__video" controls="">
+          <source src="/reset instances.1ee5be70.webm" type="video/webm">
+          </video>
+        <p class="video--description">Reset after doing armory by <span>right clicking</span> your portrait.</p>
+      </div>
     </section>
 
     <section id="herb-calc" class="section">
@@ -201,9 +196,9 @@
         <div class="section__title"><h4 class="gold">Herb<span>Calc</span></h4>
             </div>
         <div class="section__description herb">
-            In the Graveyard, three herbs are guaranteed to spawn. They can either be the chad grave moss or the virgin kingsblood.
+            There are three herb nodes in Graveyard. They can be either the chad grave moss or the virgin kingsblood.
           <br>
-            Click on how many grave moss spawned, and how many you got below:
+            First, click on how many grave moss spawned, then how many you looted:
         </div>
       </div>
       <div class="herb__content">
@@ -220,7 +215,10 @@
       </div>
       <div class="herb__totals">
           <div class="herb__total--header">
-            Number of <span class="purple">Gravemoss</span> per <span>Reset All Instances</span>:
+            Number of <span class="purple">Gravemoss</span> per <span>run</span>:
+          </div>
+          <div class="herb__run-container">
+
           </div>
           <button class="herbReset">Reset</button>
       </div>
@@ -230,14 +228,44 @@
 
     <div class="modal hidden">
       <button class="btn--close-modal">×</button>
-      <div class="modal__header">How much gravemoss<img class="gmImg" src="/gravemoss_icon.9d82fdc0.png"> did you get?</div>
+      <div class="modal__select-herb-container">
+        <h1 class="modal__no-herb hidden"><span>:[</span> :[ <span class="purple">:[</span><span class="gold">:[</span></h1>
+        <button class="btn--select-herb inactive" data-total="1">
+          <h1>1</h1>
+        </button>
+        <button class="btn--select-herb inactive" data-total="2">
+          <h1>2</h1>
+        </button>
+        <button class="btn--select-herb inactive" data-total="3">
+          <h1>3</h1>
+        </button>
+        <button class="btn--select-herb inactive" data-total="4">
+          <h1>4</h1>
+        </button>
+        <button class="btn--select-herb inactive" data-total="5">
+          <h1>5</h1>
+        </button>
+        <button class="btn--select-herb inactive" data-total="6">
+          <h1>6</h1>
+        </button>
+        <button class="btn--select-herb inactive" data-total="7">
+          <h1>7</h1>
+        </button>
+        <button class="btn--select-herb inactive" data-total="8">
+          <h1>8</h1>
+        </button>
+        <button class="btn--select-herb inactive" data-total="9">
+          <h1>9</h1>
+        </button>
+      </div>
+      <div class="modal__header">How much <img class="gmImg" src="/gravemoss_icon.9d82fdc0.png"> did you get?</div>
     </div>
     <div class="overlay hidden">
     </div>
     <footer class="footer">
       <img class="footer__logo" src="/shadow_oil.e8243f10.jpeg" alt="Logo">
       <p class="footer__text">
-        Created by <a class="footer_link" href="https://twitter.com/ffoger">Tyler Foger</a> for learning and a practical use. If you enjoyed this, please do something nice for someone today.
+        Created by <a class="footer_link" href="https://twitter.com/ffoger">Tyler Foger</a> for learning and a practical use. If you enjoyed it, do something nice for someone.
       </p>
       <ul class="footer__socials">
         <li>

@@ -202,13 +202,10 @@ var modal = document.querySelector('.modal');
 var btnCloseModal = document.querySelector('.btn--close-modal');
 var herbTotalHeader = document.querySelector('.herb__total--header');
 var herbResetBtn = document.querySelector('.herbReset');
+var modalHerbBtns = document.querySelectorAll('.btn--select-herb');
 var totalGraveMoss = 0;
 var resetCounter = 0;
 var gsppPrice = 14;
-
-var herbResetItemHTML = function herbResetItemHTML(total) {
-  return "<div class=\"gold btn--reset-herb\">".concat(total, "</div>");
-};
 
 var createHerbResetItem = function createHerbResetItem(total) {
   if (resetCounter === 4) {
@@ -223,6 +220,94 @@ var createHerbResetItem = function createHerbResetItem(total) {
   totalGraveMoss += +total;
   resetCounter++;
   return herbTotalHeader.insertAdjacentHTML('afterend', html);
+};
+
+var showBtns = function showBtns(arr) {};
+
+var createModalWindow = function createModalWindow(graveMoss) {
+  var arrGM3 = [3, 4, 5, 6, 7, 8, 9];
+  var arrGM2 = [2, 3, 4, 5, 6];
+  var arrGM1 = [1, 2, 3];
+
+  if (graveMoss === 'gm3') {
+    //unhide buttons
+    showBtns(arrGM3);
+  }
+
+  if (graveMoss === 'gm2') {
+    showBtns(arrGM2);
+  }
+
+  if (graveMoss === 'gm1') {
+    showBtns(arrGM1);
+  }
+
+  if (graveMoss === 'gm0') {
+    createModalHTML(arrGM0);
+  }
+};
+
+var toggleModalOverLay = function toggleModalOverLay() {
+  modal.classList.toggle('hidden');
+  overlay.classList.toggle('hidden');
+};
+
+function addEventListeners() {
+  herbSelect.addEventListener('click', function (e) {
+    e.preventDefault(); // Number of gravemoss picked
+
+    var graveMoss = e.target.classList[0]; // What to do when image of gravemoss is pushed
+
+    createModalWindow(graveMoss); // Show Modal and overlay
+
+    toggleModalOverLay();
+    var herbContainer = document.querySelector('.modal__select-herb-container'); // When modal button is pressed
+
+    herbContainer.addEventListener('click', function (e) {
+      e.preventDefault(); // Select number of gravemoss
+
+      var herbAmt = e.target.dataset.total; // Hide Modal/Overlay
+
+      toggleModalOverLay(); // Create new herb per reset html item and display
+
+      createHerbResetItem(herbAmt);
+    });
+  });
+  btnCloseModal.addEventListener('click', function (e) {
+    e.preventDefault(); // Toggle modal and overlay and clear the modal buttons
+
+    toggleModalOverLay();
+  });
+  herbResetBtn.addEventListener('click', function (e) {
+    e.preventDefault(); // Reset UI
+
+    var allHerbs = document.querySelectorAll('.btn--reset-herb');
+    clearModal(allHerbs); // Reset grave moss total and counter to 0
+
+    totalGraveMoss = 0;
+    resetCounter = 0;
+  });
+} // maybe needed for reset?
+
+
+var clearModal = function clearModal(elements) {
+  return elements.forEach(function (el) {
+    return el.remove();
+  });
+}; // to be disposed of
+
+
+var createGraveMossHTML = function createGraveMossHTML(num) {
+  return function (f) {
+    if (num > 0) {
+      f();
+      createGraveMossHTML(num - 1)(f);
+    }
+  };
+};
+
+var herbResetItemHTML = function herbResetItemHTML(total) {
+  return "<div class=\"gold btn--reset-herb\">".concat(total, "</div>");
 };
 
 var createModalHTML = function createModalHTML(arr) {
@@ -240,103 +325,6 @@ var createModalHTML = function createModalHTML(arr) {
   });
   return newHTML;
 };
-
-var createGraveMossHTML = function createGraveMossHTML(num) {
-  return function (f) {
-    if (num > 0) {
-      f();
-      createGraveMossHTML(num - 1)(f);
-    }
-  };
-};
-
-var createModalWindow = function createModalWindow(graveMoss) {
-  var gm3 = [3, 4, 5, 6, 7, 8, 9];
-  var gm2 = [2, 3, 4, 5, 6];
-  var gm1 = [1, 2, 3];
-  var gm0 = [];
-  var html = "<div class=\"modal__select-herb-container\">";
-
-  if (graveMoss === '3') {
-    var newHTML = createModalHTML(gm3);
-    html += newHTML;
-  }
-
-  if (graveMoss === '2') {
-    var _newHTML = createModalHTML(gm2);
-
-    html += _newHTML;
-  }
-
-  if (graveMoss === '1') {
-    var _newHTML2 = createModalHTML(gm1);
-
-    html += _newHTML2;
-  }
-
-  if (graveMoss === '0') {
-    var _newHTML3 = createModalHTML(gm0);
-
-    html += _newHTML3;
-  }
-
-  html += "</div>";
-  return btnCloseModal.insertAdjacentHTML('afterend', html);
-};
-
-var clearModal = function clearModal(elements) {
-  return elements.forEach(function (el) {
-    return el.remove();
-  });
-};
-
-var toggleModalOverLay = function toggleModalOverLay() {
-  modal.classList.toggle('hidden');
-  overlay.classList.toggle('hidden');
-};
-
-function addEventListeners() {
-  herbSelect.addEventListener('click', function (e) {
-    e.preventDefault(); // Number of gravemoss picked
-
-    var gm = e.target.classList[0].split('gm')[1]; // What to do when image of gravemoss is pushed
-
-    createModalWindow(gm); // Show Modal and overlay
-
-    toggleModalOverLay();
-    var herbContainer = document.querySelector('.modal__select-herb-container'); // When modal button is pressed
-
-    herbContainer.addEventListener('click', function (e) {
-      e.preventDefault(); // Select number of gravemoss
-
-      var herbAmt = e.target.dataset.total; // Select modal content
-
-      var modalHerbBtns = document.querySelectorAll('.btn--select-herb'); // Hide Modal/Overlay
-
-      toggleModalOverLay();
-      clearModal(modalHerbBtns); // Create new herb per reset html item and display
-
-      createHerbResetItem(herbAmt);
-    });
-  });
-  btnCloseModal.addEventListener('click', function (e) {
-    e.preventDefault(); // Select buttons
-
-    var modalHerbBtns = document.querySelectorAll('.btn--select-herb'); // Toggle modal and overlay and clear the modal buttons
-
-    toggleModalOverLay();
-    clearModal(modalHerbBtns);
-  });
-  herbResetBtn.addEventListener('click', function (e) {
-    e.preventDefault(); // Reset UI
-
-    var allHerbs = document.querySelectorAll('.btn--reset-herb');
-    clearModal(allHerbs); // Reset grave moss total and counter to 0
-
-    totalGraveMoss = 0;
-    resetCounter = 0;
-  });
-}
 },{}],"src/js/script.js":[function(require,module,exports) {
 'use strict';
 
@@ -413,7 +401,7 @@ var parent = module.bundle.parent;
 if ((!parent || !parent.isParcelRequire) && typeof WebSocket !== 'undefined') {
   var hostname = "" || location.hostname;
   var protocol = location.protocol === 'https:' ? 'wss' : 'ws';
-  var ws = new WebSocket(protocol + '://' + hostname + ':' + "56934" + '/');
+  var ws = new WebSocket(protocol + '://' + hostname + ':' + "61484" + '/');
 
   ws.onmessage = function (event) {
     checkedAssets = {};
