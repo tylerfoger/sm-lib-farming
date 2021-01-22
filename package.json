@@ -5,11 +5,12 @@
   "main": "script.js",
   "dependencies": {},
   "devDependencies": {
-    "parcel": "^1.12.4"
+    "parcel": "^1.12.4",
+    "parcel-bundler": "^1.12.4"
   },
   "scripts": {
     "start": "parcel index.html",
-    "build": "parcel build index.html --dist-dir /dist"
+    "build": "parcel build index.html"
   },
   "author": "Tyler Fougere",
   "license": "ISC"
