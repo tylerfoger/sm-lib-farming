@@ -39,7 +39,7 @@
             <a class="nav__link" href="#herb-calc">Herb Calc</a> 
           </li>
           <li class="nav__item">
-            <a class="nav__link nav__link--btn btn--show-modal" href"#"><i class="fa fa-cog"></i></a>
+            <a class="nav__link nav__link--btn btn--show-modal__price" href="#"><i class="fa fa-cog"></i></a>
           </li> 
         </ul>
       </nav>
@@ -64,6 +64,7 @@
         <img class="item-4 header__img" src="/src/img/header-img.jpg">   
       </div>
     </header>
+
     <section id="faq">
       <div class="section__header faq">
         <div class="section__title">
@@ -137,6 +138,7 @@
     </div>
 
     </section>
+
     <section id="map" class="section map-section">
       <div class="section__header map">
         <div class="section__title">
@@ -203,9 +205,9 @@
         <div class="section__title"><h4 class="gold">Herb<span>Calc</span></h4>
             </div>
         <div class="section__description herb">
-            There are three herb nodes in Graveyard. They can be either the chad grave moss or the virgin kingsblood.
+            There are three herb nodes in Graveyard.
           <br>
-            First, click on how many grave moss spawned, then how many you looted:
+            Click on how many grave moss spawned, then how many you looted:
         </div>
       </div>
       <div class="herb__content">
@@ -267,8 +269,30 @@
       </div>
       <div class="modal__header">How much <img class="gmImg" src="src/img/gravemoss_icon.png"> did you get?</div>
     </div>
+
+    <div class="modal__price hidden">
+      <button class="btn--close-modal--price">×</button>
+      <div class="modal__select-price-container">
+        <h3>
+          Your server's GSPP Price:
+        </h3>
+        <img 
+          src="/src/img/shadow_oil.jpeg"
+          alt="Greater Shadow Protection Potion">
+        <p> 
+          <span>x</span>
+          <span class="purple">1</span>
+        </p>
+        <form>
+          <input class="form__price" type="Number" id="modal__price-form">
+        </form>
+        <button id="btn-submit-new-price" type="button" value="Submit" class="btn modal__price-btn--submit">Submit</button>
+      </div>
+    </div>
+
     <div class="overlay hidden">
     </div>
+
     <footer class="footer">
       <img class="footer__logo" src="src/img/shadow_oil.jpeg" alt="Logo">
       <p class="footer__text">

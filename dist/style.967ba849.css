@@ -271,6 +271,7 @@ section {
   background-color: rgb(78, 1, 1);
 }
 
+.modal__price-btn--submit:hover,
 .btn--select-herb:hover,
 .map__btn:hover {
   background-color: gold;
@@ -312,7 +313,7 @@ section {
 .herb.section__description {
   margin-left: 3rem;
   margin-right: 3rem;
-  text-align: start;
+  text-align: center;
 }
 
 .herb.section__header {
@@ -330,7 +331,9 @@ section {
 .herb__content img {
   height: 250px;
   width: auto;
-  border: 1px solid black;
+  border-radius: 25px 25px 25px 25px;
+  border: 1px;
+  background-color: rgba(187, 180, 180, 0.363);
 }
 
 .herb__totals {
@@ -345,8 +348,8 @@ section {
 .herbReset {
 }
 
-/* MODAL */
-
+/* HERB MODAL */
+.modal__price,
 .modal {
   background-image: linear-gradient(to bottom right, darkgrey, lightgrey);
   position: fixed;
@@ -370,6 +373,7 @@ section {
   z-index: 100;
 }
 
+.btn--close-modal--price,
 .btn--close-modal {
   font-family: inherit;
   color: white;
@@ -382,6 +386,7 @@ section {
   background: none;
 }
 
+.modal__price-btn--submit,
 .btn--select-herb {
   background-color: darkred;
   color: gold;
@@ -397,6 +402,7 @@ section {
   align-content: center;
 }
 
+.modal__select-price-container,
 .modal__select-herb-container {
   display: flex;
   flex-direction: column;
@@ -426,6 +432,34 @@ section {
 
 .modal__no-herb.hidden {
   display: none;
+}
+
+/* PRICE MODAL */
+
+.modal__select-price-container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  margin: 1rem;
+  padding: 1rem;
+}
+
+.modal__select-price-container img,
+.modal__select-price-container form,
+.modal__select-price-container button,
+.modal__select-price-container h3 {
+  margin: 1rem;
+  align-self: center;
+  width: max-content;
+}
+
+.modal__price-btn--submit {
+  margin: 1rem;
+}
+form {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
 }
 
 /* FOOTER */

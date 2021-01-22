@@ -1,6 +1,9 @@
 'use strict';
 
-import { clearNodeElements as clearNodeElements } from './helpers.js';
+import {
+  clearNodeElements as clearNodeElements,
+  toggleModalOverlay as toggleModalOverlay,
+} from './helpers.js';
 import * as mapView from './views/mapView.js';
 import * as herbView from './views/herbView.js';
 
@@ -13,7 +16,12 @@ const navHeight = nav.getBoundingClientRect().height;
 const herbSelect = document.querySelector('.herb__qty--container');
 const herbContainer = document.querySelector('.modal__select-herb-container');
 const herbResetBtn = document.querySelector('.herbReset');
-const btnCloseModal = document.querySelector('.btn--close-modal');
+const btnCloseModalHerb = document.querySelector('.btn--close-modal');
+const btnCloseModalPrice = document.querySelector('.btn--close-modal--price');
+const btnOpenPriceModal = document.querySelector('.btn--show-modal__price');
+const modalHerb = document.querySelector('.modal');
+const modalPrice = document.querySelector('.modal__price');
+const btnModalPriceSubmit = document.querySelector('.modal__price-btn--submit');
 
 const createHerbRun = function (total) {
   if (model.state.resetCounter >= 5) {
@@ -74,27 +82,53 @@ const addEventListeners = function () {
 
     const graveMoss = e.target.classList[0];
 
+    if (graveMoss === 'gm0') {
+      createHerbRun(0);
+    }
+
     // Unhide array of buttons based on number of gravemoss, then show modal
     herbView.renderModalBtns(graveMoss);
+    toggleModalOverlay(modalHerb);
   });
 
   // When you click the button with the number of herbs you got
   herbContainer.addEventListener('click', function (e) {
     e.preventDefault();
 
-    const herbAmt = e.target.dataset.total;
+    let herbAmt;
+    !e.target.dataset.total
+      ? (herbAmt = e.target.parentElement.dataset.total)
+      : (herbAmt = e.target.dataset.total);
 
     // Create new herb per run html item and display
     createHerbRun(herbAmt);
 
     // Hide Modal/Overlay
-    herbView.toggleModalOverLay();
+    toggleModalOverlay(modalHerb);
   });
 
-  btnCloseModal.addEventListener('click', function (e) {
+  btnOpenPriceModal.addEventListener('click', function (e) {
+    e.preventDefault();
+    toggleModalOverlay(modalPrice);
+  });
+
+  btnCloseModalHerb.addEventListener('click', function (e) {
     e.preventDefault();
 
-    herbView.toggleModalOverLay();
+    toggleModalOverlay(modalHerb);
+  });
+
+  btnCloseModalPrice.addEventListener('click', function (e) {
+    e.preventDefault();
+
+    toggleModalOverlay(modalPrice);
+  });
+
+  btnModalPriceSubmit.addEventListener('click', function (e) {
+    e.preventDefault();
+    const newPrice = document.getElementById('modal__price-form').value;
+    model.state.gsppPrice = newPrice;
+    toggleModalOverlay(modalPrice);
   });
 
   herbResetBtn.addEventListener('click', function (e) {
