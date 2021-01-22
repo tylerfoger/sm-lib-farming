@@ -127,8 +127,11 @@ const addEventListeners = function () {
   btnModalPriceSubmit.addEventListener('click', function (e) {
     e.preventDefault();
     const newPrice = document.getElementById('modal__price-form').value;
+    if (!newPrice) {
+      return toggleModalOverlay(modalPrice);
+    }
     model.state.gsppPrice = newPrice;
-    toggleModalOverlay(modalPrice);
+    return toggleModalOverlay(modalPrice);
   });
 
   herbResetBtn.addEventListener('click', function (e) {
