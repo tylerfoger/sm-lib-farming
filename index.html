@@ -43,26 +43,51 @@
           </li> 
         </ul>
       </nav>
-      <div class="header__title">
-        <h1 class="item-1">So you wanna
-          <span>farm</span>
-        </h1>
-        <h2 class="item-2">Greater Shadow Protection Potions
-          <span>?</span>
-        </h2>
-        <p class="item-3">
-          Find
-          <a class="link" href="#map">
-          <span>herbs</span>
-          </a>
-          , hate 
-          <a class="link" href="#herb-calc">
-          <span>kingsblood</span>
-          .
-          </a>
-        </p>
-        <img class="item-4 header__img" src="/src/img/header-img.jpg">   
+      <div class="header__container">
+        <!-- <div class="header__title">
+          <h1 class="item-1">So you wanna
+            <span>farm</span>
+          </h1>
+          <h2 class="item-2">Greater Shadow Protection Potions
+            <span>?</span>
+          </h2>
+          <p class="item-3">
+            Find
+            <a class="link" href="#map">
+            <span>herbs</span>
+            </a>
+            , hate 
+            <a class="link" href="#herb-calc">
+            <span>kingsblood</span>
+            .
+            </a>
+          </p>
+        </div> -->
+        <img class="item-4 header__img" src="/src/img/header-img.jpg">
+        <div class="">
+          <h1 class="item-1">So you wanna
+            <span>farm</span>
+          </h1>
+          <h2 class="item-2">Greater Shadow Protection Potions
+            <span>?</span>
+          </h2>
+          <p class="item-3">
+            Find
+            <a class="link" href="#map">
+            <span>herbs</span>
+            </a>
+            , hate 
+            <a class="link" href="#herb-calc">
+            <span>kingsblood</span>
+            </a>
+          </p>
+        <div>
+          <br>
+        </div>
+        </div>
+           
       </div>
+      </header>
     </header>
 
     <section id="faq">
@@ -205,7 +230,7 @@
         <div class="section__title"><h4 class="gold">Herb<span>Calc</span></h4>
             </div>
         <div class="section__description herb">
-            There's three herb nodes in Graveyard. Click which herbs spawned, then how many gravemoss you looted:
+            Click which herbs spawned, then how many gravemoss you looted:
         </div>
       </div>
       <div class="herb__content">
@@ -233,7 +258,7 @@
       
     </section>
 
-    <div class="modal hidden">
+    <div class="modal modal__herb hidden">
       <button class="btn--close-modal">×</button>
       <div class="modal__select-herb-container">
         <h1 class="modal__no-herb hidden"><span>:[</span> :[ <span class="purple">:[</span><span class="gold">:[</span></h1>
@@ -265,10 +290,12 @@
           <h1>9</h1>
         </button>
       </div>
-      <div class="modal__header">How much GM <img class="gmImg" src="src/img/gravemoss_icon.png"> </div>
+      <div class="modal__header">
+        <img class="gmImg" src="src/img/gravemoss_icon.png"> 
+      </div>
     </div>
 
-    <div class="modal__price hidden">
+    <div class="modal modal__price hidden">
       <button class="btn--close-modal--price">×</button>
       <div class="modal__select-price-container">
         <h3>
